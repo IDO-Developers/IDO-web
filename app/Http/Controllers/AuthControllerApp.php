@@ -116,15 +116,19 @@ class AuthControllerApp extends Controller
                         }
                     }
                 }else{
-                    Session::flash('message-error', 'Ud no puede matricularse, acuda a nuestras istalaciones para resolver el problema');
-                    return redirect('/home');
+
+                    return response()->json([
+                        'message' => 'Ud no puede matricularse, acuda a nuestras istalaciones para resolver el problema'], 402);
 
                 }
         }catch (Exception $e){
-            Session::flash('message-error', 'Hubo un error al realizar la matrículas');
+
+            return response()->json([
+                'message' => 'Hubo un error al realizar la matrículas'], 402);
 
         }catch (Error $e){
-            Session::flash('message-error', 'Hubo un error al realizar la matrículas');
+            return response()->json([
+                'message' => 'Hubo un error al realizar la matrículas'], 402);
 
         }
 
